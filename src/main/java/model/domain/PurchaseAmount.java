@@ -1,53 +1,41 @@
 package model.domain;
 
-import java.util.regex.Pattern;
-
 public class PurchaseAmount {
-    private final int amount;
-    private static int MIN_LEN = 4;
-    private static int MAX_LEN = 9;
     private static final int LOTTO_PRICE = 1000;
-    private static final String REGEX = "^[0-9]+$";
-    private static final Pattern ONLY_NUMBER = Pattern.compile(REGEX);
-    private static final String ERR_MSG_INPUT_ONLY_NUMBER = "[ERROR] 숫자만 입력해주세요";
-    private static final String ERR_MSG_ENTER_VALID_NUMBER_IN_RANGE = "[ERROR] 범위 내의 올바른 숫자를 입력해주세요";
+    private static final int ZERO = 0;
+    private static final String ERR_MSG_ENTER_VALID_NUMBER_IN_RANGE = "[ERROR] 1000보다 큰 숫자이거나, 1000으로 나누어 떨어지는 숫자를 입력해주세요";
+    private static final String ERR_MSG_NUMBER_MUST_BE_POSITIVE = "[ERROR] 숫자는 0보다 커야합니다";
+    private static final String PURCHASED_MESSAGE = "개를 구매했습니다.";
+    private final int amount;
 
     public PurchaseAmount(int userInput) {
+        validate(userInput);
         this.amount = userInput;
     }
 
-    public static PurchaseAmount from(String userInput) {
-        validate(userInput);
-        return new PurchaseAmount(Integer.parseInt(userInput));
-    }
-
-    public static void validate(String userInput) {
-        requireOnlyNumber(userInput);
-        requireLengthBetween(userInput);
+    private static void validate(int userInput) {
+        requirePositiveNumber(userInput);
         requireDivisibleByLottoPrice(userInput);
-        
     }
 
-    public static void requireOnlyNumber(String userInput) {
-        if (!ONLY_NUMBER.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(ERR_MSG_INPUT_ONLY_NUMBER);
+    private static void requirePositiveNumber(int value) {
+        if (value <= ZERO) {
+            throw new IllegalArgumentException(ERR_MSG_NUMBER_MUST_BE_POSITIVE);
         }
     }
 
-    public static void requireLengthBetween(String userInput) {
-        int length = userInput.length();
-        if (length < MIN_LEN || length > MAX_LEN) {
-            throw new IllegalArgumentException(ERR_MSG_ENTER_VALID_NUMBER_IN_RANGE);
-        }
-    }
-
-    public static void requireDivisibleByLottoPrice(String userInput) {
-        if (Integer.parseInt(userInput) % LOTTO_PRICE != 0) {
+    private static void requireDivisibleByLottoPrice(int userInput) {
+        if (userInput % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERR_MSG_ENTER_VALID_NUMBER_IN_RANGE);
         }
     }
 
     public int purchasableCount() {
         return amount / LOTTO_PRICE;
+    }
+
+    @Override
+    public String toString() {
+        return purchasableCount() + PURCHASED_MESSAGE;
     }
 }
