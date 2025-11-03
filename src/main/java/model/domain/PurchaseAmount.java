@@ -1,6 +1,7 @@
 package model.domain;
 
 public class PurchaseAmount {
+    private static final String LN = System.lineSeparator();
     private static final int LOTTO_PRICE = 1000;
     private static final int ZERO = 0;
     private static final String ERR_MSG_ENTER_VALID_NUMBER_IN_RANGE = "[ERROR] 1000보다 큰 숫자이거나, 1000으로 나누어 떨어지는 숫자를 입력해주세요";
@@ -36,6 +37,6 @@ public class PurchaseAmount {
 
     @Override
     public String toString() {
-        return purchasableCount() + PURCHASED_MESSAGE;
+        return LN + purchasableCount() + PURCHASED_MESSAGE;
     }
 }

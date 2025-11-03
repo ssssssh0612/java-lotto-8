@@ -16,6 +16,7 @@ public class WinningNumbersInput implements InputStringStrategy<WinningNumbers> 
 
     @Override
     public void prompt() {
+        System.out.println();
         System.out.println(MESSAGE_INPUT_WINNING_NUMBERS);
     }
 

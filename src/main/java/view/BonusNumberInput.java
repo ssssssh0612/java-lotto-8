@@ -17,6 +17,7 @@ public class BonusNumberInput implements InputStringStrategy<BonusNumber>{
 
     @Override
     public void prompt() {
+        System.out.println();
         System.out.println(MESSAGE_INPUT_BONUS_NUMBER);
     }
 
