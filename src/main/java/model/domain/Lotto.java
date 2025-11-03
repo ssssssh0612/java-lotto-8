@@ -8,7 +8,7 @@ public class Lotto implements Iterable<Integer> {
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
-    private static final String ERR_MSG_LOTTO_SIZE_MUST_BE_SIX = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String ERR_MSG_LOTTO_SIZE_MUST_BE_SIX = "[ERROR] 로또 번호는 6개여야 합니다";
     private static final String ERR_MSG_LOTTO_NUMBERS_MUST_BE_UNIQUE = "[ERROR] 로또 번호는 고유해야 합니다";
     private static final String ERR_MSG_LOTTO_NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호는 1~45 사이입니다";
     private final List<Integer> numbers;
