@@ -21,16 +21,8 @@ public enum LottoRank {
         this.label = label;
     }
 
-    public int prize() {
-        return prize;
-    }
-
     public static List<LottoRank> printOrder() {
         return List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
-    }
-
-    public String formatLine(int count) {
-        return String.format("%s (%,d원) - %d개", label, prize, count);
     }
 
     public static LottoRank of(int matchCount, boolean bonusMatch) {
@@ -54,6 +46,14 @@ public enum LottoRank {
             return SECOND;
         }
         return THIRD;
+    }
+
+    public String formatLine(int count) {
+        return String.format("%s (%,d원) - %d개", label, prize, count);
+    }
+
+    public int prize() {
+        return prize;
     }
 
 }
